@@ -1,4 +1,4 @@
-In FastAPI, **Uvicorn** is the** ASGI server** that is responsible for handling requests and responses. While Flask uses a built-in WSGI server (which is simple and sufficient for development), FastAPI, being an ASGI framework, requires a separate ASGI server like Uvicorn (or others like Daphne or Hypercorn).
+In FastAPI, **Uvicorn**  is the ** ASGI server** that is responsible for handling requests and responses. While Flask uses a built-in WSGI server (which is simple and sufficient for development), FastAPI, being an ASGI framework, requires a separate ASGI server like Uvicorn (or others like Daphne or Hypercorn).
 Flask: You run the app directly via **python app.py**, and Flask uses its internal server for handling requests.
 FastAPI: You run the app with Uvicorn like** uvicorn app:app**, as FastAPI needs an ASGI server to handle requests properly.
 
