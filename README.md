@@ -175,4 +175,9 @@ async def get_data():
 ```
 
 # Automatic Documentation
+## its kindof similar to swagger ui
+
+
+https://github.com/user-attachments/assets/1093150e-a154-4d8e-96ac-f7e300c38ea6
+
 
