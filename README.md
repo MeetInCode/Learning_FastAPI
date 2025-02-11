@@ -108,3 +108,48 @@ You can test this FastAPI application by sending a POST request with a JSON body
 }
 ```
 
+#Type Hints
+
+```python
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+# Define a Pydantic model for the request body
+class Item(BaseModel):
+    name: str  # Type hint: this should be a string
+    price: float  # Type hint: this should be a float
+    description: str = "No description"  # Optional field with a default value
+
+# Define an endpoint that takes an 'Item' and returns a greeting with its name and price
+@app.post("/items/")
+async def create_item(item: Item) -> dict:
+    # The function will receive an 'Item' and return a dictionary
+    return {"message": f"Item {item.name} is priced at ${item.price}", "item": item.dict()}
+
+```
+
+###  create_item(item: Item) -> dict:
+
+(item: Item)
+This part defines the input parameters of the function.
+
+item: This is the parameter name of the function. It will hold the data sent by the client.
+
+Item: This is a type hint that indicates the expected type for the item parameter. In this case, Item is a Pydantic model, and FastAPI uses this model to validate and parse the incoming request data.
+
+### How it works:
+ When a client sends a POST request to the /items/ endpoint, FastAPI will automatically validate that the data sent in the body matches the structure defined in the Item model. If the structure is correct, it will be parsed into an instance of Item and passed to the create_item function as the item parameter.
+
+
+-> dict:
+
+This part is the return type hint. It indicates that the create_item function will return a dictionary (dict).
+### How it works:
+ The function returns a Python dictionary. In this case, the dictionary includes a message and the item data.
+### Why dict:
+ We are returning a dictionary to format the response that will be sent back to the client. The dictionary contains key-value pairs, which FastAPI converts to a JSON response automatically.
+
+
+
