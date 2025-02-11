@@ -108,7 +108,7 @@ You can test this FastAPI application by sending a POST request with a JSON body
 }
 ```
 
-#Type Hints
+# Type Hints
 
 ```python
 from fastapi import FastAPI
@@ -152,4 +152,27 @@ This part is the return type hint. It indicates that the create_item function wi
  We are returning a dictionary to format the response that will be sent back to the client. The dictionary contains key-value pairs, which FastAPI converts to a JSON response automatically.
 
 
+
+# Demonstrating Asynchronous Support in FastAPI
+
+We’ll create an endpoint that simulates a time-consuming operation (e.g., fetching data from an external API or performing a heavy computation). The async keyword allows FastAPI to handle other requests while waiting for the operation to complete.
+
+```python
+from fastapi import FastAPI
+import asyncio
+
+app = FastAPI()
+
+# Simulate a time-consuming async task
+async def fake_db_call():
+    await asyncio.sleep(2)  # Simulate a 2-second delay (e.g., network request or DB query)
+    return {"message": "Data fetched successfully"}
+
+@app.get("/async_example/")
+async def get_data():
+    data = await fake_db_call()  # Await the asynchronous function to finish
+    return data
+```
+
+# Automatic Documentation
 
